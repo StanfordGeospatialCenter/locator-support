@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>locator.stanford.edu</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<h1 id="welcome-to-the-locatorstanfordedu-geocoder">Welcome to the locator.stanford.edu Geocoder</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Stanford Geospatial Center has been developing our internal geocoding infrastructure. This is our ALPHA Geocoding Server, based upon Esri's ArcGIS Server technology. The server currently provides geocoding services for:</p>
+<ul>
+<li><strong>US Street Addresses</strong></li>
+<li><strong>Street Addresses</strong>, <strong>Place Names</strong>, <strong>Administrative Units</strong>, and more, for <em><strong>North and South America</strong></em></li>
+<li><strong>Reverse Geocoding</strong></li>
+</ul>
+<h2 id="news">NEWS!!</h2>
+<p>A replacement server for locator.stanford.edu is currently being developed and should bring expanded Global Geocoding Services, as well as performance and stability improvements to our geocoding services. This project is being implemented in a partnership between Stanford Library's <a href="https://library.stanford.edu/department/digital-library-systems-and-services-dlss">Digital Library Systems &amp; Services Division</a>, and the newly formed <a href="https://library.stanford.edu/data-services">Research Data Services Division</a>.</p>
+<p>The following are components of the project:</p>
+<ul>
+<li><strong>Global Geocoding, Gazetteering and Reverse Geocoding</strong> Services</li>
+<li>Scalable and sustainable Linux-based multi-server architecture providing <strong>support for multiple simultaneous and sustained bulk geocoding requests</strong></li>
+<li><strong>Service Level Agreement</strong> (SLA) with uptime, performance and security commitments and protocols</li>
+<li><strong>A Service Use Agreement</strong>, detailing the responsibilities of researchers using locator.stanford.edu services with regards to <strong>Data Use &amp; security, Publication, Sharing and Data Risk Levels &amp; Privacy Issues</strong></li>
+<li><strong>Expanded support offerings</strong>, including new Support Documentation, Workshops, and Python &amp; R Notebooks for getting started</li>
+</ul>
+<h3 id="some-important-points-about-the-current-service">Some important points about the current service:</h3>
+<ul>
+<li>The service <strong>should not be used</strong> with **PHI, Protected Health Information (PHI), or other types of <a href="https://uit.stanford.edu/guide/riskclassifications">High Risk data</a>. Users wishing to work with data related to human subject should consult with IRB for policies concerning de-identification of data and other privacy issues.</li>
+<li>The locator.stanford.edu service uses <strong>https</strong></li>
+<li>The locator.stanford.edu service <strong>does not</strong> log geocodes made against the service</li>
+<li>Data passed to the service for augmentation <strong>is not retained</strong></li>
+<li>The locator.stanford.edu geocoding service is <strong>hosted on Stanford hardware within the Stanford Network</strong>.</li>
+<li>This service is meant to be used for bulk geocoding of <strong>thousands to millions of placenames and/or addresses</strong></li>
+<li>The service is provided <strong>for use by Stanford researchers</strong>, but is in ALPHA, currently, and <strong>does not carry any Service Level Agreement, or guarantees of performance or uptime</strong></li>
+<li>The service is in development, and may be inaccessible at some times. When maintenance  requires the services to be turned off, we will post messaging for users to our <a href="https://mailman.stanford.edu/mailman/listinfo/stanfordgis">stanfordgis@lists.stanford.edu list</a>, as well as our Slack, which you can join at <a href="https://stanford-geospatial.slack.com">https://stanford-geospatial.slack.com</a></li>
+</ul>
+<h2 id="signing-into-locatorstanfordedu-services">Signing into locator.stanford.edu Services</h2>
+<p>Because the locator.stanford.edu services use Windows Group authentication, it is necessary to use the Windows Domain before you SUNetID, in order to authenticate, like so:  </p>
+<p><code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">WIN\put_your_SUNetID_here</code></p>
+<p><strong>Please be careful when using your credentials in code, and never put them in repositories that sync to public views.</strong></p>
+<h2 id="accessing-locatorstanfordedu-services">Accessing locator.stanford.edu services</h2>
+<h3 id="using-esri-desktop-clients">Using Esri Desktop clients</h3>
+<h4 id="arcgis-desktop">ArcGIS Desktop</h4>
+<ul>
+<li>In ArcCatalog, or the Catalog Panel in ArcMap, expand the GIS Servers item</li>
+<li>Double-click the Add ArcGIS Server item</li>
+<li>Leave the default "Use GIS Services" option, click Next</li>
+<li>For the 'Server URL' use: <a href="https://locator.stanford.edu/arcgis">https://locator.stanford.edu/arcgis</a></li>
+<li>For 'User Name' use your SUNetID (prefixed with the 'WIN' domain) as WIN\SUNetID</li>
+<li>Enter the password associated with your SUNetID and check the option to Save Username/Password</li>
+<li>Click Finish</li>
+</ul>
+<h4 id="arcgis-pro">ArcGIS Pro</h4>
+<ul>
+<li>When ArcGIS Pro launches, use the ArcGISOnline login at the top right of the software to login to our Stanford ArcGIS Portal, (using our organizational url:<strong>stanford.maps.arcgis.com</strong>, and using your typical Single Sign-on credentials (<em>WITHOUT</em> <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">WIN\</code>, <em>this time</em>).</li>
+<li>Once logged into stanford.maps.arcgis.com, through ArcGIS Pro, you should see the Stanford <strong>Latin America and North America Geocoders</strong> &amp; the Stanford <strong>US Streets Locator</strong> as options in your Catalog&gt;Locators panel</li>
+</ul>
+<h4 id="arcgis-online">ArcGIS Online</h4>
+<h3 id="accessing-through-the-rest-api">Accessing through the REST API</h3>
+<p>You can login to locator.stanford.edu services at <a href="https://locator.stanford.edu/arcgis/">https://locator.stanford.edu/arcgis/</a> using WebAuth, and the <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">WIN\your_SUNetID_here</code> format described, above.</p>
+<h4 id="service-endpoints-are-as-follows-all-endpoints-require-authentication">Service Endpoints are as follows (all endpoints require authentication):</h4>
+<ul>
+<li><a href="https://locator.stanford.edu/arcgis/rest/services/geocode/USA_StreetAddress/GeocodeServer">US Street Addresses</a> - <a href="https://locator.stanford.edu/arcgis/rest/services/geocode/USA_StreetAddress/GeocodeServer">https://locator.stanford.edu/arcgis/rest/services/geocode/USA_StreetAddress/GeocodeServer</a></li>
+<li><a href="https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/LatinAmerica/GeocodeServer">Latin America Composite</a> (Street Addresses, Place Names, Administrative Units, and Reverse Geocoding) - <a href="https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/LatinAmerica/GeocodeServer">https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/LatinAmerica/GeocodeServer</a></li>
+<li><a href="https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/NorthAmerica/GeocodeServer">North America Composite</a> (Street Addresses, Place Names, Administrative Units, and Reverse Geocoding) - <a href="https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/NorthAmerica/GeocodeServer">https://locator.stanford.edu/arcgis/rest/services/beta_geocoders/NorthAmerica/GeocodeServer</a></li>
+</ul>
+<h4 id="r--rstudio">R &amp; RStudio</h4>
+<p>Our colleague, <a href="https://profiles.stanford.edu/claudia-engel">Claudia Engel</a>, from <a href="https://library.stanford.edu/research/cidr">The Center for Interdisciplinary Digital Research</a>, has created a repository with support materials for accessing the locator.stanford.edu services, from R and RStudio:</p>
+<ul>
+<li><a href="https://github.com/cengel/ArcGIS_geocoding">cengel's ArcGIS_geocoding for R Repo on Github</a></li>
+</ul>
+<h4 id="python">Python</h4>
+<p>You can access the locator.stanford.edu services, directly, using the ArcGIS REST API. The use of the API is well documented in the <a href="https://developers.arcgis.com/rest/services-reference/enterprise/get-started-with-the-services-directory.htm">ArcGIS REST API Services Reference</a>, and in particular the following sections:  </p>
+<ul>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/geocode-service.htm">Geocode Service</a></li>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/batch-geocode.htm">Geocoding Tools</a></li>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/generate-token.htm">Generating Tokens</a></li>
+</ul>
+<p>The Stanford Geospatial Center has a Github repository that contains some resources for accessing the locator.stanford.edu services, using Python:</p>
+<ul>
+<li><a href="https://github.com/StanfordGeospatialCenter/SGC-Python-Geocoder">StanfordGeospatialCenter's SGC-Python-Geocoder repository on Github</a></li>
+</ul>
+<h3 id="more-information">More Information</h3>
+<p><a title="Esri's Introducing Geocoding documentation" href="https://desktop.arcgis.com/en/arcmap/10.3/guide-books/geocoding/what-is-geocoding.htm">Esri's "Introducing Geocoding" documentation</a></p>
+
+</body>
+</html>
